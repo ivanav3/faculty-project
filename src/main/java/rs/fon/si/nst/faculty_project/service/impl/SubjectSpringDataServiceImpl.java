@@ -14,6 +14,8 @@ import rs.fon.si.nst.faculty_project.entity.Subject;
 import rs.fon.si.nst.faculty_project.mapper.impl.SubjectMapper;
 import rs.fon.si.nst.faculty_project.repository.SubjectSpringDataRepository;
 import rs.fon.si.nst.faculty_project.service.SubjectService;
+import rs.fon.si.nst.faculty_project.validator.impl.SubjectSaveValidator;
+import rs.fon.si.nst.faculty_project.validator.impl.SubjectUpdateValidator;
 
 /**
  *
@@ -24,15 +26,20 @@ public class SubjectSpringDataServiceImpl implements SubjectService {
 
     private SubjectSpringDataRepository subjectSpringDataRepository;
     private SubjectMapper subjectMapper;
+    private SubjectSaveValidator subjectSaveValidator;
+    private SubjectUpdateValidator subjectUpdateValidator;
 
-    public SubjectSpringDataServiceImpl(SubjectSpringDataRepository subjectSpringDataRepository, SubjectMapper subjectMapper) {
+    public SubjectSpringDataServiceImpl(SubjectSpringDataRepository subjectSpringDataRepository, SubjectMapper subjectMapper, SubjectSaveValidator subjectSaveValidator, SubjectUpdateValidator subjectUpdateValidator) {
         this.subjectSpringDataRepository = subjectSpringDataRepository;
         this.subjectMapper = subjectMapper;
+        this.subjectSaveValidator = subjectSaveValidator;
+        this.subjectUpdateValidator = subjectUpdateValidator;
     }
 
     @Transactional
     @Override
     public void save(SubjectDto subjectDto) {
+        subjectSaveValidator.validate(subjectDto);
         subjectSpringDataRepository.save(subjectMapper.toEntity(subjectDto));
     }
 
@@ -87,12 +94,15 @@ public class SubjectSpringDataServiceImpl implements SubjectService {
             found.setClassHours(subjectDto.getClassHours());
 
         }
+        subjectUpdateValidator.validate(subjectMapper.toDto(found));
         subjectSpringDataRepository.save(found);
     }
 
     @Override
     public void deleteById(Long id) throws Exception {
-        subjectSpringDataRepository.deleteById(id);
+        //We use findById so we can check if chosen subject exists
+        SubjectDto tmp = findById(id);
+        subjectSpringDataRepository.deleteById(tmp.getId());
     }
 
 }
