@@ -16,6 +16,8 @@ import rs.fon.si.nst.faculty_project.exception.ValidationException;
 import rs.fon.si.nst.faculty_project.mapper.impl.StudyProgramMapper;
 import rs.fon.si.nst.faculty_project.repository.StudyProgramSpringDataRepository;
 import rs.fon.si.nst.faculty_project.service.StudyProgramService;
+import rs.fon.si.nst.faculty_project.validator.impl.StudyProgramSaveValidator;
+import rs.fon.si.nst.faculty_project.validator.impl.StudyProgramUpdateValidator;
 
 /**
  *
@@ -27,14 +29,20 @@ public class StudyProgramSpringDataServiceImpl implements StudyProgramService {
     private StudyProgramSpringDataRepository studyProgramSpringDataRepository;
     private StudyProgramMapper studyProgramMapper;
 
-    public StudyProgramSpringDataServiceImpl(StudyProgramSpringDataRepository studyProgramSpringDataRepository, StudyProgramMapper studyProgramMapper) {
+    private StudyProgramSaveValidator studyProgramSaveValidator;
+    private StudyProgramUpdateValidator studyProgramUpdateValidator;
+
+    public StudyProgramSpringDataServiceImpl(StudyProgramSpringDataRepository studyProgramSpringDataRepository, StudyProgramMapper studyProgramMapper, StudyProgramSaveValidator studyProgramSaveValidator, StudyProgramUpdateValidator studyProgramUpdateValidator) {
         this.studyProgramSpringDataRepository = studyProgramSpringDataRepository;
         this.studyProgramMapper = studyProgramMapper;
+        this.studyProgramSaveValidator = studyProgramSaveValidator;
+        this.studyProgramUpdateValidator = studyProgramUpdateValidator;
     }
 
     @Transactional
     @Override
     public void save(StudyProgramDto studyProgramDto) {
+        studyProgramSaveValidator.validate(studyProgramDto);
         studyProgramSpringDataRepository.save(studyProgramMapper.toEntity(studyProgramDto));
     }
 
@@ -81,6 +89,7 @@ public class StudyProgramSpringDataServiceImpl implements StudyProgramService {
         if (studyProgramDto.getName() != null) {
             found.setName(studyProgramDto.getName());
         }
+        studyProgramUpdateValidator.validate(studyProgramMapper.toDto(found));
 
         studyProgramSpringDataRepository.save(found);
     }
