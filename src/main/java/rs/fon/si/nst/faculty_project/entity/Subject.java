@@ -20,7 +20,7 @@ import rs.fon.si.nst.faculty_project.type.Status;
  */
 @Entity
 public class Subject {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,8 +28,9 @@ public class Subject {
     private Long ects;
 
     //to be changed
-    @Column(name = "study_program")
-    private String studyProgram;
+//    @Column(name = "study_program")
+//    private String studyProgram;
+    private Long studyProgram;
 
     private Long semester;
 
@@ -42,7 +43,7 @@ public class Subject {
     public Subject() {
     }
 
-    public Subject(Long id, String name, Long ects, String studyProgram, Long semester, Status status, Long classHours) {
+    public Subject(Long id, String name, Long ects, Long studyProgram, Long semester, Status status, Long classHours) {
         this.id = id;
         this.name = name;
         this.ects = ects;
@@ -76,11 +77,11 @@ public class Subject {
         this.ects = ects;
     }
 
-    public String getStudyProgram() {
+    public Long getStudyProgram() {
         return studyProgram;
     }
 
-    public void setStudyProgram(String studyProgram) {
+    public void setStudyProgram(Long studyProgram) {
         this.studyProgram = studyProgram;
     }
 
@@ -152,6 +153,4 @@ public class Subject {
         return "Subject{" + "id=" + id + ", name=" + name + ", ects=" + ects + ", studyProgram=" + studyProgram + ", semester=" + semester + ", status=" + status + ", classHours=" + classHours + '}';
     }
 
-    
-    
 }

@@ -19,7 +19,8 @@ public class SubjectDto implements Serializable {
     private Long ects;
 
     //to be changed
-    private String studyProgram;
+//    private String studyProgram;
+    private Long studyProgram;
 
     private Long semester;
 
@@ -29,7 +30,7 @@ public class SubjectDto implements Serializable {
     public SubjectDto() {
     }
 
-    public SubjectDto(Long id, String name, Long ects, String studyProgram, Long semester, Status status, Long classHours) {
+    public SubjectDto(Long id, String name, Long ects, Long studyProgram, Long semester, Status status, Long classHours) {
         this.id = id;
         this.name = name;
         this.ects = ects;
@@ -63,11 +64,11 @@ public class SubjectDto implements Serializable {
         this.ects = ects;
     }
 
-    public String getStudyProgram() {
+    public Long getStudyProgram() {
         return studyProgram;
     }
 
-    public void setStudyProgram(String studyProgram) {
+    public void setStudyProgram(Long studyProgram) {
         this.studyProgram = studyProgram;
     }
 
