@@ -80,3 +80,9 @@ button:focus-visible {
   flex-direction: column;
   
 }
+.label-form{
+ display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: fit-content;
+}

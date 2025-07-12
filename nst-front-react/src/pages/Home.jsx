@@ -10,6 +10,13 @@ const Home = () => {
     navigate("/addStudyProgram");
   };
 
+  const handleShowAllSubjects = () => {
+    navigate("/showAllSubjects");
+  };
+  const handleAddSubject = () => {
+    navigate("/addSubject");
+  };
+
   return (
     <div
       style={{
@@ -25,8 +32,8 @@ const Home = () => {
         <button onClick={handleAddSP}>Add a study program</button>
       </div>
       <div style={{ display: "flex", gap: "20px", marginBottom: "20px" }}>
-        <button>Show all subjects</button>
-        <button>Add a subject</button>
+        <button onClick={handleShowAllSubjects}>Show all subjects</button>
+        <button onClick={handleAddSubject}>Add a subject</button>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ function App() {
             path="/showAllStudyPrograms"
             element={<ShowAllStudyPrograms />}
           ></Route>
-          <Route path="/addSubject" element={<AddSubject />}></Route>
+          <Route path="/addSubject/:id?" element={<AddSubject />}></Route>
           <Route
             path="/addStudyProgram/:id?"
             element={<AddStudyProgram element={false} />}

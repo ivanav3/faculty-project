@@ -12,7 +12,7 @@ const ShowAllStudyPrograms = () => {
         console.log(studyPrograms);
       })
       .catch((error) => {
-        alert("An error occurred. Please try again.");
+        alert("Error while getting all the subjects.");
         console.log(error);
       });
   }, []);
