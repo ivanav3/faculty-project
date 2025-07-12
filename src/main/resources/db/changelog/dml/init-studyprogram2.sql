@@ -1,0 +1,1 @@
+INSERT INTO study_program (name) VALUES ('SP4')

@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,11 +27,16 @@ public class StudyProgram {
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY,
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy = "studyProgram")
     private List<Subject> subjects;
 
     public StudyProgram() {
+    }
+
+    public StudyProgram(String name) {
+        this.name = name;
+        this.subjects = new ArrayList<>();
     }
 
     public StudyProgram(Long id, String name, List<Subject> subjects) {

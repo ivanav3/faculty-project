@@ -5,6 +5,7 @@
 package rs.fon.si.nst.faculty_project.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,6 +20,12 @@ public class StudyProgramDto implements Serializable{
     private List<SubjectDto> subjects;
 
     public StudyProgramDto() {
+    }
+    
+    
+    public StudyProgramDto(String name) {
+        this.name = name;
+        this.subjects = new ArrayList<>();
     }
 
     public StudyProgramDto(Long id, String name, List<SubjectDto> subjects) {

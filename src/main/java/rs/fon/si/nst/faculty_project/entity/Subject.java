@@ -32,6 +32,11 @@ public class Subject {
 //    private String studyProgram;
     private Long studyProgram;
 
+    
+//    @ManyToOne
+//    @JoinColumn(name="study_program")
+//    private StudyProgram studyProgram;
+    
     private Long semester;
 
     @Enumerated(EnumType.STRING)
@@ -43,6 +48,17 @@ public class Subject {
     public Subject() {
     }
 
+    public Subject(String name, Long ects, Long studyProgram, Long semester, Status status, Long classHours) {
+        this.name = name;
+        this.ects = ects;
+        this.studyProgram = studyProgram;
+        this.semester = semester;
+        this.status = status;
+        this.classHours = classHours;
+    }
+
+    
+    
     public Subject(Long id, String name, Long ects, Long studyProgram, Long semester, Status status, Long classHours) {
         this.id = id;
         this.name = name;

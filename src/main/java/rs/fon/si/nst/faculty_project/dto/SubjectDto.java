@@ -30,6 +30,15 @@ public class SubjectDto implements Serializable {
     public SubjectDto() {
     }
 
+    public SubjectDto(String name, Long ects, Long studyProgram, Long semester, Status status, Long classHours) {
+        this.name = name;
+        this.ects = ects;
+        this.studyProgram = studyProgram;
+        this.semester = semester;
+        this.status = status;
+        this.classHours = classHours;
+    }
+
     public SubjectDto(Long id, String name, Long ects, Long studyProgram, Long semester, Status status, Long classHours) {
         this.id = id;
         this.name = name;

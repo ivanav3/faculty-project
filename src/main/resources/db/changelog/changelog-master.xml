@@ -11,4 +11,16 @@
         http://www.liquibase.org/xml/ns/pro
         http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
+    <changeSet id="1" author="ivanav3">
+        <sqlFile path="dml/init-subject.sql" relativeToChangelogFile="true"></sqlFile>
+        
+    </changeSet>
+     <changeSet id="2" author="ivanav3">
+        <sqlFile path="dml/init-studyprogram.sql" relativeToChangelogFile="true"></sqlFile>
+        
+    </changeSet>
+    <changeSet id="3" author="ivanav3">
+        <sqlFile path="dml/init-studyprogram2.sql" relativeToChangelogFile="true"></sqlFile>
+        
+    </changeSet>
 </databaseChangeLog>
